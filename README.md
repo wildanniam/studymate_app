@@ -1,0 +1,3 @@
+# studymate_app
+
+A new Flutter project.
