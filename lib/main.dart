@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'app/routes/app_pages.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const StudyMateApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class StudyMateApp extends StatelessWidget {
+  const StudyMateApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return GetMaterialApp(
+      title: 'StudyMate',
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
+      initialRoute: AppPages.initial,
+      getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
