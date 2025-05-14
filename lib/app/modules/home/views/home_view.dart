@@ -38,7 +38,7 @@ class HomeView extends GetView<HomeController> {
                     crossAxisCount: size.width > 600 ? 3 : 2,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
-                    childAspectRatio: size.width > 600 ? 1.5 : 1.2,
+                    childAspectRatio: size.width > 600 ? 1.5 : 0.8,
                     children: controller.features.map((feature) {
                       return _buildFeatureCard(
                         context,
@@ -70,22 +70,19 @@ class HomeView extends GetView<HomeController> {
       title: title,
       subtitle: subtitle,
       onTap: onTap,
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       leading: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withAlpha(20),
-          borderRadius: BorderRadius.circular(12),
+          color: Theme.of(context).colorScheme.primary.withAlpha(30),
+          shape: BoxShape.circle,
         ),
         child: Icon(
           icon,
           color: Theme.of(context).colorScheme.primary,
-          size: 24,
+          size: 36,
         ),
-      ),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        size: 16,
-        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }

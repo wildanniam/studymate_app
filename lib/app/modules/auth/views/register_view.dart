@@ -10,6 +10,7 @@ class RegisterView extends GetView<AuthController> {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
+    final usernameController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
@@ -25,6 +26,24 @@ class RegisterView extends GetView<AuthController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: usernameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Username',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Username tidak boleh kosong';
+                    }
+                    if (value.length < 3) {
+                      return 'Username minimal 3 karakter';
+                    }
+                    return null;
+                  },
+                ),
                 const SizedBox(height: 20),
                 TextFormField(
                   controller: emailController,
@@ -91,6 +110,7 @@ class RegisterView extends GetView<AuthController> {
                                 controller.register(
                                   emailController.text,
                                   passwordController.text,
+                                  usernameController.text,
                                 );
                               }
                             },

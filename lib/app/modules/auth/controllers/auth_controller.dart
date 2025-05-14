@@ -32,14 +32,18 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String email, String password, String username) async {
     try {
       isLoading.value = true;
       errorMessage.value = '';
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      await userCredential.user?.updateDisplayName(username);
+      await userCredential.user?.reload();
+      _user.value = _auth.currentUser;
       Get.offAllNamed('/home');
     } on FirebaseAuthException catch (e) {
       errorMessage.value = _getErrorMessage(e.code);

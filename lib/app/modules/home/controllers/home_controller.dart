@@ -5,7 +5,9 @@ import '../../auth/controllers/auth_controller.dart';
 class HomeController extends GetxController {
   final AuthController _authController = Get.find<AuthController>();
 
-  String get userName => _authController.user?.displayName ?? 'Pengguna';
+  String get userName => _authController.user?.displayName?.isNotEmpty == true
+      ? _authController.user!.displayName!
+      : (_authController.user?.email ?? 'Pengguna');
 
   final RxList<Map<String, dynamic>> features = [
     {
