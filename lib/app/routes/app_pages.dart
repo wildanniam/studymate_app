@@ -3,7 +3,10 @@ import '../modules/auth/views/login_view.dart';
 import '../modules/auth/views/register_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/flashcard/views/flashcard_view.dart';
+import '../modules/flashcard/views/flashcard_list_view.dart';
+import '../modules/flashcard/views/flashcard_detail_view.dart';
+import '../modules/flashcard/views/flashcard_form_view.dart';
+import '../modules/flashcard/bindings/flashcard_binding.dart';
 import '../modules/quiz/views/quiz_view.dart';
 import '../modules/progress/views/progress_view.dart';
 import '../modules/settings/views/settings_view.dart';
@@ -35,7 +38,20 @@ class AppPages {
     ),
     GetPage(
       name: Routes.flashcard,
-      page: () => const FlashcardView(),
+      page: () => const FlashcardListView(),
+      binding: FlashcardBinding(),
+      middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: Routes.flashcardDetail,
+      page: () => const FlashcardDetailView(),
+      binding: FlashcardBinding(),
+      middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: Routes.flashcardForm,
+      page: () => FlashcardFormView(),
+      binding: FlashcardBinding(),
       middlewares: [AuthMiddleware()],
     ),
     GetPage(
