@@ -1,28 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../auth/controllers/auth_controller.dart';
+import '../controllers/home_controller.dart';
+import '../../../../core/widgets/study_card.dart';
 
-class HomeView extends GetView<AuthController> {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends GetView<HomeController> {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('StudyMate'),
-        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: () => controller.logout(),
+            onPressed: controller.logout,
           ),
         ],
       ),
-      body: const Center(
-        child: Text(
-          'Selamat Datang di StudyMate',
-          style: TextStyle(fontSize: 20),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hi, ${controller.userName}',
+                style: theme.textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 24),
+              Expanded(
+                child: Obx(
+                  () => GridView.count(
+                    crossAxisCount: size.width > 600 ? 3 : 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: size.width > 600 ? 1.5 : 1.2,
+                    children: controller.features.map((feature) {
+                      return _buildFeatureCard(
+                        context,
+                        title: feature['title'],
+                        subtitle: feature['subtitle'],
+                        icon: feature['icon'],
+                        onTap: () =>
+                            controller.navigateToFeature(feature['route']),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFeatureCard(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return StudyCard(
+      title: title,
+      subtitle: subtitle,
+      onTap: onTap,
+      leading: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary.withAlpha(20),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(
+          icon,
+          color: Theme.of(context).colorScheme.primary,
+          size: 24,
+        ),
+      ),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }

@@ -1,47 +1,19 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final Rx<User?> user = Rx<User?>(null);
-  final isLoading = false.obs;
-  final errorMessage = ''.obs;
+  final Rx<User?> _user = Rx<User?>(null);
+  final RxBool isLoading = false.obs;
+  final RxString errorMessage = ''.obs;
+
+  User? get user => _user.value;
+  bool get isLoggedIn => _user.value != null;
 
   @override
   void onInit() {
     super.onInit();
-    user.bindStream(_auth.authStateChanges());
-  }
-
-  Future<void> register(String email, String password) async {
-    try {
-      isLoading.value = true;
-      errorMessage.value = '';
-      await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      Get.offAllNamed('/home');
-      Get.snackbar(
-        'Berhasil',
-        'Registrasi berhasil!',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
-    } on FirebaseAuthException catch (e) {
-      errorMessage.value = e.message ?? 'Terjadi kesalahan';
-      Get.snackbar(
-        'Error',
-        errorMessage.value,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    } finally {
-      isLoading.value = false;
-    }
+    _user.bindStream(_auth.authStateChanges());
   }
 
   Future<void> login(String email, String password) async {
@@ -53,22 +25,24 @@ class AuthController extends GetxController {
         password: password,
       );
       Get.offAllNamed('/home');
-      Get.snackbar(
-        'Berhasil',
-        'Login berhasil!',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
     } on FirebaseAuthException catch (e) {
-      errorMessage.value = e.message ?? 'Terjadi kesalahan';
-      Get.snackbar(
-        'Error',
-        errorMessage.value,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
+      errorMessage.value = _getErrorMessage(e.code);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> register(String email, String password) async {
+    try {
+      isLoading.value = true;
+      errorMessage.value = '';
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
       );
+      Get.offAllNamed('/home');
+    } on FirebaseAuthException catch (e) {
+      errorMessage.value = _getErrorMessage(e.code);
     } finally {
       isLoading.value = false;
     }
@@ -79,13 +53,24 @@ class AuthController extends GetxController {
       await _auth.signOut();
       Get.offAllNamed('/login');
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Gagal logout',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      errorMessage.value = 'Gagal logout';
+    }
+  }
+
+  String _getErrorMessage(String code) {
+    switch (code) {
+      case 'user-not-found':
+        return 'Email tidak ditemukan';
+      case 'wrong-password':
+        return 'Password salah';
+      case 'email-already-in-use':
+        return 'Email sudah terdaftar';
+      case 'weak-password':
+        return 'Password terlalu lemah';
+      case 'invalid-email':
+        return 'Format email tidak valid';
+      default:
+        return 'Terjadi kesalahan';
     }
   }
 }
