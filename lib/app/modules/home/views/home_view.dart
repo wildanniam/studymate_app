@@ -16,7 +16,10 @@ class HomeView extends GetView<HomeController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('StudyMate'),
+        title: const Text(
+          'StudyMate',
+          style: TextStyle(fontWeight: FontWeight.w900),
+        ),
         actions: [
           GetBuilder<ThemeController>(
             builder: (themeController) {

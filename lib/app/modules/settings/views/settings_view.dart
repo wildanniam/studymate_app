@@ -76,6 +76,44 @@ class SettingsView extends GetView<SettingsController> {
             title: Text('Versi Aplikasi'),
             subtitle: Text('1.0.0'),
           ),
+          // Pengingat Belajar
+          Obx(() {
+            final time = controller.reminderTime.value;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  leading: Icon(Icons.alarm,
+                      color: Theme.of(context).colorScheme.primary),
+                  title: const Text('Reminder Belajar'),
+                  subtitle: Text(time != null
+                      ? 'Setiap hari jam ${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}'
+                      : 'Belum diatur'),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.edit),
+                    onPressed: () async {
+                      final picked = await showTimePicker(
+                        context: context,
+                        initialTime: time ?? TimeOfDay.now(),
+                      );
+                      if (picked != null) {
+                        controller.setReminder(picked);
+                      }
+                    },
+                  ),
+                ),
+                if (time != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, bottom: 8),
+                    child: TextButton.icon(
+                      onPressed: controller.cancelReminder,
+                      icon: const Icon(Icons.delete),
+                      label: const Text('Hapus Reminder'),
+                    ),
+                  ),
+              ],
+            );
+          }),
           const SizedBox(height: 32),
           // Logout
           ElevatedButton.icon(
