@@ -127,6 +127,31 @@ class RegisterView extends GetView<AuthController> {
                               style: TextStyle(fontSize: 18),
                             ),
                     )),
+                Obx(() => controller.errorMessage.value.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.red.withAlpha(20),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.error_outline,
+                                  color: Colors.red),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  controller.errorMessage.value,
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink()),
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () => Get.back(),

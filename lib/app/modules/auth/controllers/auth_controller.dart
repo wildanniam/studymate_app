@@ -26,7 +26,9 @@ class AuthController extends GetxController {
       );
       Get.offAllNamed('/home');
     } on FirebaseAuthException catch (e) {
-      errorMessage.value = _getErrorMessage(e.code);
+      errorMessage.value = _getErrorMessage(e.code, e.message);
+    } catch (e) {
+      errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }
@@ -46,7 +48,9 @@ class AuthController extends GetxController {
       _user.value = _auth.currentUser;
       Get.offAllNamed('/home');
     } on FirebaseAuthException catch (e) {
-      errorMessage.value = _getErrorMessage(e.code);
+      errorMessage.value = _getErrorMessage(e.code, e.message);
+    } catch (e) {
+      errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }
@@ -61,7 +65,7 @@ class AuthController extends GetxController {
     }
   }
 
-  String _getErrorMessage(String code) {
+  String _getErrorMessage(String code, [String? message]) {
     switch (code) {
       case 'user-not-found':
         return 'Email tidak ditemukan';
@@ -74,7 +78,7 @@ class AuthController extends GetxController {
       case 'invalid-email':
         return 'Format email tidak valid';
       default:
-        return 'Terjadi kesalahan';
+        return message ?? 'Terjadi kesalahan';
     }
   }
 }
