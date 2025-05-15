@@ -33,10 +33,32 @@ StudyMate adalah aplikasi pembelajaran interaktif yang dirancang untuk membantu 
 
 ## 🖼️ Screenshots
 
-| Home | Flashcard | Quiz | Progress | Settings | Notification |
-|------|-----------|------|----------|----------|--------------|
-| ![Home](https://github.com/user-attachments/assets/5771643c-c03c-4731-8adc-363d4f4e1635) | ![Flashcard](https://github.com/user-attachments/assets/7daab38c-542f-4590-a13a-072916031cee) | ![Quiz](https://github.com/user-attachments/assets/421e0833-f49a-4e78-9cf4-2a1a8669234d) | ![Progress](https://github.com/user-attachments/assets/6c6fc23c-1291-45b5-a6f5-181331dd342a) | ![Settings](https://github.com/user-attachments/assets/9dd4ffab-0937-4758-b21e-6f4b05ea6d88) | ![Notification](https://github.com/user-attachments/assets/a3957499-d839-4f7d-b079-23fadffe4ffb) |
-| ![Home2](https://github.com/user-attachments/assets/62f1e871-880e-4b0a-b626-74575eaf22f4) | ![Flashcard2](https://github.com/user-attachments/assets/e39a1721-ae32-4b3b-9160-406225ff02f0) | ![Quiz2](https://github.com/user-attachments/assets/d312165f-d5d5-4499-b150-68a5a5d284bd) | ![Progress2](https://github.com/user-attachments/assets/5ea20936-332c-4273-8c52-e8995876c6e0) | ![Settings2](https://github.com/user-attachments/assets/265aeb68-f776-41fe-85c6-135af57227aa) | ![Notification2](https://github.com/user-attachments/assets/cbd079e1-67cf-4c95-a61b-af6f085f18fb) |
+<table>
+  <tr>
+    <th>Home</th>
+    <th>Flashcard</th>
+    <th>Quiz</th>
+    <th>Progress</th>
+    <th>Settings</th>
+    <th>Notification</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/5771643c-c03c-4731-8adc-363d4f4e1635" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/7daab38c-542f-4590-a13a-072916031cee" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/421e0833-f49a-4e78-9cf4-2a1a8669234d" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/6c6fc23c-1291-45b5-a6f5-181331dd342a" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/9dd4ffab-0937-4758-b21e-6f4b05ea6d88" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/a3957499-d839-4f7d-b079-23fadffe4ffb" height="320"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/62f1e871-880e-4b0a-b626-74575eaf22f4" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/e39a1721-ae32-4b3b-9160-406225ff02f0" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/d312165f-d5d5-4499-b150-68a5a5d284bd" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/5ea20936-332c-4273-8c52-e8995876c6e0" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/265aeb68-f776-41fe-85c6-135af57227aa" height="320"/></td>
+    <td><img src="https://github.com/user-attachments/assets/cbd079e1-67cf-4c95-a61b-af6f085f18fb" height="320"/></td>
+  </tr>
+</table>
 
 ---
 
