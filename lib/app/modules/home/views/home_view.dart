@@ -4,6 +4,7 @@ import '../controllers/home_controller.dart';
 import '../../../../core/widgets/study_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import '../../../../core/controllers/theme_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -17,9 +18,21 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: const Text('StudyMate'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: controller.logout,
+          GetBuilder<ThemeController>(
+            builder: (themeController) {
+              final isDark = themeController.themeMode == ThemeMode.dark;
+              return Row(
+                children: [
+                  Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+                  Switch(
+                    value: isDark,
+                    onChanged: (val) {
+                      themeController.toggleTheme();
+                    },
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

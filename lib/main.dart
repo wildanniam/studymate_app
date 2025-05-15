@@ -31,16 +31,18 @@ class StudyMateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeController>();
-
-    return GetMaterialApp(
-      title: 'StudyMate',
-      theme: AppTheme.darkTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: themeController.themeMode,
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
-      debugShowCheckedModeBanner: false,
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return GetMaterialApp(
+          title: 'StudyMate',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeController.themeMode,
+          initialRoute: AppPages.initial,
+          getPages: AppPages.routes,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }
