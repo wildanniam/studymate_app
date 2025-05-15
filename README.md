@@ -35,9 +35,8 @@ StudyMate adalah aplikasi pembelajaran interaktif yang dirancang untuk membantu 
 
 | Home | Flashcard | Quiz | Progress | Settings |
 |------|-----------|------|----------|----------|
-| ![Home](link_home) | ![Flashcard](link_flashcard) | ![Quiz](link_quiz) | ![Progress](link_progress) | ![Settings](link_settings) |
+| ![Home](https://github.com/user-attachments/assets/5771643c-c03c-4731-8adc-363d4f4e1635) | ![Flashcard](https://github.com/user-attachments/assets/7daab38c-542f-4590-a13a-072916031cee) | ![Quiz](https://github.com/user-attachments/assets/421e0833-f49a-4e78-9cf4-2a1a8669234d) | ![Progress](https://github.com/user-attachments/assets/6c6fc23c-1291-45b5-a6f5-181331dd342a) | ![Settings](https://github.com/user-attachments/assets/9dd4ffab-0937-4758-b21e-6f4b05ea6d88) |
 
-> Ganti `link_xxx` dengan link/gambar screenshot aplikasi kamu.
 
 ---
 
