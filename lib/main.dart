@@ -8,6 +8,7 @@ import 'core/theme/app_theme.dart';
 import 'core/controllers/theme_controller.dart';
 import 'app/modules/auth/controllers/auth_controller.dart';
 import 'app/modules/flashcard/models/flashcard_model.dart';
+import 'app/modules/quiz/models/quiz_history_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() async {
 
   Hive.registerAdapter(FlashcardDeckAdapter());
   Hive.registerAdapter(FlashcardAdapter());
+  Hive.registerAdapter(QuizHistoryAdapter());
 
   Get.put(ThemeController());
   Get.put(AuthController());

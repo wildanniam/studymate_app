@@ -11,6 +11,8 @@ import '../modules/quiz/views/quiz_view.dart';
 import '../modules/progress/views/progress_view.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../../core/middleware/auth_middleware.dart';
+import '../modules/quiz/controllers/quiz_controller.dart';
+import '../modules/flashcard/controllers/flashcard_controller.dart';
 
 part 'app_routes.dart';
 
@@ -57,11 +59,18 @@ class AppPages {
     GetPage(
       name: Routes.quiz,
       page: () => const QuizView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<QuizController>(() => QuizController());
+        Get.lazyPut<FlashcardController>(() => FlashcardController());
+      }),
       middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: Routes.progress,
       page: () => const ProgressView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<QuizController>(() => QuizController());
+      }),
       middlewares: [AuthMiddleware()],
     ),
     GetPage(
