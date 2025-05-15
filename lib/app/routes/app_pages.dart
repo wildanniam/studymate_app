@@ -10,6 +10,7 @@ import '../modules/flashcard/bindings/flashcard_binding.dart';
 import '../modules/quiz/views/quiz_view.dart';
 import '../modules/progress/views/progress_view.dart';
 import '../modules/settings/views/settings_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
 import '../../core/middleware/auth_middleware.dart';
 import '../modules/quiz/controllers/quiz_controller.dart';
 import '../modules/flashcard/controllers/flashcard_controller.dart';
@@ -76,6 +77,7 @@ class AppPages {
     GetPage(
       name: Routes.settings,
       page: () => const SettingsView(),
+      binding: SettingsBinding(),
       middlewares: [AuthMiddleware()],
     ),
   ];
