@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'color_schemes.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'app_typography.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -7,10 +9,10 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme(
         brightness: Brightness.light,
-        primary: AppColorScheme.light.primary,
-        onPrimary: AppColorScheme.light.onPrimary,
-        secondary: AppColorScheme.light.secondary,
-        onSecondary: AppColorScheme.light.onSecondary,
+        primary: const Color(0xFF38BDF8), // Sky Blue
+        onPrimary: Colors.white,
+        secondary: const Color(0xFF22C55E), // Green accent
+        onSecondary: Colors.white,
         error: AppColorScheme.light.error,
         onError: AppColorScheme.light.onError,
         surface: AppColorScheme.light.surface,
@@ -23,36 +25,7 @@ class AppTheme {
         foregroundColor: AppColorScheme.light.textPrimary,
         elevation: 0,
       ),
-      textTheme: TextTheme(
-        displayLarge: TextStyle(
-          color: AppColorScheme.light.textPrimary,
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-        ),
-        displayMedium: TextStyle(
-          color: AppColorScheme.light.textPrimary,
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-          color: AppColorScheme.light.textPrimary,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineMedium: TextStyle(
-          color: AppColorScheme.light.textPrimary,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
-        bodyLarge: TextStyle(
-          color: AppColorScheme.light.textPrimary,
-          fontSize: 16,
-        ),
-        bodyMedium: TextStyle(
-          color: AppColorScheme.light.textSecondary,
-          fontSize: 14,
-        ),
-      ),
+      textTheme: AppTypography.textTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColorScheme.light.primary,
@@ -82,20 +55,19 @@ class AppTheme {
         filled: true,
         fillColor: AppColorScheme.light.surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColorScheme.light.primary),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF38BDF8)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide:
-              BorderSide(color: AppColorScheme.light.primary.withAlpha(128)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: const Color(0xFF38BDF8).withAlpha(128)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColorScheme.light.primary, width: 2),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF38BDF8), width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: AppColorScheme.light.error),
         ),
         contentPadding:
@@ -109,10 +81,10 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme(
         brightness: Brightness.dark,
-        primary: AppColorScheme.dark.primary,
-        onPrimary: AppColorScheme.dark.onPrimary,
-        secondary: AppColorScheme.dark.secondary,
-        onSecondary: AppColorScheme.dark.onSecondary,
+        primary: const Color(0xFF38BDF8), // Sky Blue
+        onPrimary: Colors.black,
+        secondary: const Color(0xFF22C55E), // Green accent
+        onSecondary: Colors.black,
         error: AppColorScheme.dark.error,
         onError: AppColorScheme.dark.onError,
         surface: AppColorScheme.dark.surface,
@@ -125,36 +97,7 @@ class AppTheme {
         foregroundColor: AppColorScheme.dark.textPrimary,
         elevation: 0,
       ),
-      textTheme: TextTheme(
-        displayLarge: TextStyle(
-          color: AppColorScheme.dark.textPrimary,
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-        ),
-        displayMedium: TextStyle(
-          color: AppColorScheme.dark.textPrimary,
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-          color: AppColorScheme.dark.textPrimary,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineMedium: TextStyle(
-          color: AppColorScheme.dark.textPrimary,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
-        bodyLarge: TextStyle(
-          color: AppColorScheme.dark.textPrimary,
-          fontSize: 16,
-        ),
-        bodyMedium: TextStyle(
-          color: AppColorScheme.dark.textSecondary,
-          fontSize: 14,
-        ),
-      ),
+      textTheme: AppTypography.textTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColorScheme.dark.primary,
@@ -184,20 +127,19 @@ class AppTheme {
         filled: true,
         fillColor: AppColorScheme.dark.surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColorScheme.dark.primary),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF38BDF8)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide:
-              BorderSide(color: AppColorScheme.dark.primary.withAlpha(128)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: const Color(0xFF38BDF8).withAlpha(128)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColorScheme.dark.primary, width: 2),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF38BDF8), width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: AppColorScheme.dark.error),
         ),
         contentPadding:

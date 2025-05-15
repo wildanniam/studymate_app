@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../../../../core/widgets/study_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -66,22 +68,35 @@ class HomeView extends GetView<HomeController> {
     required IconData icon,
     required VoidCallback onTap,
   }) {
-    return StudyCard(
-      title: title,
-      subtitle: subtitle,
-      onTap: onTap,
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      leading: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withAlpha(30),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          icon,
-          color: Theme.of(context).colorScheme.primary,
-          size: 36,
+    // Pilih icon edukatif untuk fitur tertentu
+    IconData displayIcon = icon;
+    if (title == 'Flashcard') displayIcon = FontAwesomeIcons.bookOpen;
+    if (title == 'Quiz') displayIcon = FluentIcons.quiz_new_24_regular;
+    return Hero(
+      tag: title,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+        child: StudyCard(
+          title: title,
+          subtitle: subtitle,
+          onTap: () {
+            onTap();
+          },
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          leading: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary.withAlpha(30),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              displayIcon,
+              color: Theme.of(context).colorScheme.primary,
+              size: 36,
+            ),
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../flashcard/controllers/flashcard_controller.dart';
 import '../controllers/quiz_controller.dart';
+import 'package:lottie/lottie.dart';
 
 class QuizView extends GetView<QuizController> {
   const QuizView({Key? key}) : super(key: key);
@@ -14,6 +15,19 @@ class QuizView extends GetView<QuizController> {
       body: Obx(() {
         if (controller.selectedDeck.value == null) {
           // Pilih deck
+          if (flashcardController.decks.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/lottie/empty.json', width: 180),
+                  const SizedBox(height: 16),
+                  const Text('Belum ada deck tersedia',
+                      style: TextStyle(fontSize: 18)),
+                ],
+              ),
+            );
+          }
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -33,23 +47,33 @@ class QuizView extends GetView<QuizController> {
         if (controller.isFinished.value) {
           // Hasil quiz
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Quiz Selesai!',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 16),
-                Text(
-                    'Skor: ${controller.score.value} / ${controller.questions.length}',
-                    style: const TextStyle(fontSize: 20)),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.selectedDeck.value = null;
-                  },
-                  child: const Text('Kembali ke Pilihan Deck'),
+            child: Hero(
+              tag: 'QuizResult',
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset('assets/lottie/success.json',
+                        width: 120, repeat: false),
+                    const SizedBox(height: 16),
+                    Text('Quiz Selesai!',
+                        style: Theme.of(context).textTheme.headlineMedium),
+                    const SizedBox(height: 16),
+                    Text(
+                        'Skor: ${controller.score.value} / ${controller.questions.length}',
+                        style: const TextStyle(fontSize: 20)),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () {
+                        controller.selectedDeck.value = null;
+                      },
+                      child: const Text('Kembali ke Pilihan Deck'),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           );
         }
